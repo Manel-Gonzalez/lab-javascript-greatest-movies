@@ -2005,3 +2005,60 @@ const movies = [
 if (typeof module !== 'undefined') {
   module.exports = movies;
 }
+
+
+function getAllDirectors() {
+
+  const directorsArr =  movies.map((movie)=>(movie.director))
+  const directorsFilter = directorsArr.filter((element,index) => directorsArr.indexOf(element) === index)
+  return directorsFilter.sort();
+}
+console.log(getAllDirectors(movies));
+
+
+function howManyMovies(){
+
+  const spielbergDrama = movies.filter((movie)=>((movie.director === "Steven Spielberg")&& (movie.genre.includes("Drama"))));
+  return spielbergDrama
+} 
+
+console.log(howManyMovies(movies))
+
+
+function scoresAverage(){
+  const avgMovies = movies.reduce((accumulator , currentValue)=> (accumulator + currentValue.score),0);
+  return (avgMovies / movies.length).toFixed(2)
+}
+
+console.log("La media de todas las peliculas es: " +scoresAverage(movies));
+
+
+function dramaMoviesScore(){
+  const dramaMovies = movies.filter((movie) => (movie.genre.includes("Drama")));
+  const avgDramaMovies = dramaMovies.reduce((accumulator,currentValue) => (accumulator + currentValue.score),0) /movies.length
+  return avgDramaMovies.toFixed(2);
+}
+
+console.log("La media de peliculas de drama es: " + dramaMoviesScore(movies));
+
+
+function orderByYear(){
+  const orderedMovies = [...movies];
+  return orderedMovies.sort((a,b) => a.year - b.year);
+
+  
+}
+
+console.log(orderByYear(movies))
+
+console.log("--.--.--.--.--.--.--.--.--.--.--.--.--.--.--.--.--.--.--.--")
+
+
+function orderAlphabetically(){
+  const sortedMovies = [...movies];
+  return  sortedMovies.sort((a, b)=> a.title.localeCompare(b.title)).slice(0,20);
+  
+
+}
+
+console.log(orderAlphabetically(movies))
